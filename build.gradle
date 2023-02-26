@@ -15,5 +15,3 @@ allprojects {
         jcenter()
     }
 }
-
-//ml到此一游
