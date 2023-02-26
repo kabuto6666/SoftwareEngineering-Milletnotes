@@ -1,0 +1,257 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:18:1-160:12
+INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:18:1-160:12
+INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:18:1-160:12
+INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:18:1-160:12
+INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:18:1-160:12
+INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:18:1-160:12
+INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:18:1-160:12
+	package
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:20:5-31
+		INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml
+		INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:22:5-30
+		INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml
+		INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:19:5-51
+	xmlns:android
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:18:11-69
+	android:versionCode
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:21:5-28
+		INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml
+		INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml
+uses-sdk
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:24:5-44
+INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:24:5-44
+INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:24:5-44
+INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:24:5-44
+INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:24:5-44
+	android:targetSdkVersion
+		INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:24:5-44
+		INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:24:15-41
+		INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml
+		INJECTED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:26:5-81
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:26:22-78
+uses-permission#com.android.launcher.permission.INSTALL_SHORTCUT
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:27:5-88
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:27:22-85
+uses-permission#android.permission.INTERNET
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:28:5-67
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:28:22-64
+uses-permission#android.permission.READ_CONTACTS
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:29:5-72
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:29:22-69
+uses-permission#android.permission.MANAGE_ACCOUNTS
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:30:5-74
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:30:22-71
+uses-permission#android.permission.AUTHENTICATE_ACCOUNTS
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:31:5-80
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:31:22-77
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:32:5-71
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:32:22-68
+uses-permission#android.permission.USE_CREDENTIALS
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:33:5-74
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:33:22-71
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:34:5-81
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:34:22-78
+application
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:36:5-159:19
+	android:label
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:38:9-41
+	android:icon
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:37:9-42
+activity#net.micode.notes.ui.NotesListActivity
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:39:9-53:20
+	android:label
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:43:13-45
+	android:launchMode
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:44:13-43
+	android:windowSoftInputMode
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:47:13-52
+	android:exported
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:40:13-36
+	android:uiOptions
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:46:13-57
+	android:configChanges
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:42:13-74
+	android:theme
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:45:13-45
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:41:13-49
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:49:13-52:29
+action#android.intent.action.MAIN
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:50:17-69
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:50:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:51:17-77
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:51:27-74
+activity#net.micode.notes.ui.NoteEditActivity
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:55:9-85:20
+	android:launchMode
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:59:13-43
+	android:exported
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:56:13-36
+	android:configChanges
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:58:13-74
+	android:theme
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:60:13-45
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:57:13-48
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.DEFAULT+data:mimeType:vnd.android.cursor.item/call_note+data:mimeType:vnd.android.cursor.item/text_note
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:62:13-68:29
+	android:scheme
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:62:28-49
+	tools:ignore
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:63:17-47
+action#android.intent.action.VIEW
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:64:17-69
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:64:25-66
+category#android.intent.category.DEFAULT
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:65:17-76
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:65:27-73
+data
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:66:17-78
+	android:mimeType
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:66:23-75
+intent-filter#action:name:android.intent.action.INSERT_OR_EDIT+category:name:android.intent.category.DEFAULT+data:mimeType:vnd.android.cursor.item/call_note+data:mimeType:vnd.android.cursor.item/text_note
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:70:13-75:29
+action#android.intent.action.INSERT_OR_EDIT
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:71:17-79
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:71:25-76
+intent-filter#action:name:android.intent.action.SEARCH+category:name:android.intent.category.DEFAULT
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:77:13-80:29
+action#android.intent.action.SEARCH
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:78:17-71
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:78:25-68
+meta-data#android.app.searchable
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:82:13-84:54
+	android:resource
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:84:17-51
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:83:17-54
+provider#net.micode.notes.data.NotesProvider
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:87:9-91:40
+	android:authorities
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:89:13-47
+	android:multiprocess
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:90:13-40
+	android:exported
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:91:13-37
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:88:13-63
+receiver#net.micode.notes.widget.NoteWidgetProvider_2x
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:93:9-106:20
+	android:label
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:95:13-50
+	android:exported
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:96:13-36
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:94:13-57
+intent-filter#action:name:android.appwidget.action.APPWIDGET_DELETED+action:name:android.appwidget.action.APPWIDGET_UPDATE+action:name:android.intent.action.PRIVACY_MODE_CHANGED
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:97:13-101:29
+action#android.appwidget.action.APPWIDGET_UPDATE
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:98:17-84
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:98:25-81
+action#android.appwidget.action.APPWIDGET_DELETED
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:99:17-85
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:99:25-82
+action#android.intent.action.PRIVACY_MODE_CHANGED
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:100:17-85
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:100:25-82
+meta-data#android.appwidget.provider
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:103:13-105:58
+	android:resource
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:105:17-55
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:104:17-58
+receiver#net.micode.notes.widget.NoteWidgetProvider_4x
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:107:9-121:20
+	android:label
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:109:13-50
+	android:exported
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:110:13-36
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:108:13-57
+receiver#net.micode.notes.ui.AlarmInitReceiver
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:123:9-128:20
+	android:exported
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:124:13-36
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:123:19-55
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:125:13-127:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:126:17-79
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:126:25-76
+receiver#net.micode.notes.ui.AlarmReceiver
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:130:9-133:20
+	android:process
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:132:13-38
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:131:13-61
+activity#net.micode.notes.ui.AlarmAlertActivity
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:135:9-141:20
+	android:label
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:138:13-45
+	android:launchMode
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:139:13-48
+	android:exported
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:136:13-36
+	android:theme
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:140:13-75
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:137:13-50
+activity#net.micode.notes.ui.NotesPreferenceActivity
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:143:9-149:20
+	android:label
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:146:13-54
+	android:launchMode
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:147:13-43
+	android:exported
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:144:13-36
+	android:theme
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:148:13-60
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:145:13-71
+service#net.micode.notes.gtask.remote.GTaskSyncService
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:151:9-154:19
+	android:exported
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:153:13-37
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:152:13-74
+meta-data#android.app.default_searchable
+ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:156:9-158:52
+	android:value
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:158:13-49
+	android:name
+		ADDED from D:\workingSoftware\AndroidStudio\AndroidProject\rjgc\Notes-master1\app\src\main\AndroidManifest.xml:157:13-58
