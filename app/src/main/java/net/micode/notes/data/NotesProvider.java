@@ -33,15 +33,23 @@ import net.micode.notes.R;
 import net.micode.notes.data.Notes.DataColumns;
 import net.micode.notes.data.Notes.NoteColumns;
 import net.micode.notes.data.NotesDatabaseHelper.TABLE;
-
+//为存储和获取数据提供接口。可以在不同的应用程序之间共享数据
+//ContentProvider提供的方法
+//query：查询
+//insert：插入
+//update：更新
+//delete：删除
+//getType：得到数据类型
 
 public class NotesProvider extends ContentProvider {
+    //UriMatcher，用于Uri的匹配
     private static final UriMatcher mMatcher;
 
     private NotesDatabaseHelper mHelper;
 
     private static final String TAG = "NotesProvider";
 
+    //URI的标识
     private static final int URI_NOTE            = 1;
     private static final int URI_NOTE_ITEM       = 2;
     private static final int URI_DATA            = 3;
@@ -50,6 +58,7 @@ public class NotesProvider extends ContentProvider {
     private static final int URI_SEARCH          = 5;
     private static final int URI_SEARCH_SUGGEST  = 6;
 
+    //创建Uri时，将上面定义的标识添加进去
     static {
         mMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         mMatcher.addURI(Notes.AUTHORITY, "note", URI_NOTE);
@@ -64,6 +73,9 @@ public class NotesProvider extends ContentProvider {
     /**
      * x'0A' represents the '\n' character in sqlite. For title and content in the search result,
      * we will trim '\n' and white space in order to show more information.
+     * x'0A' 表示 sqlite 中的 'n' 字符。
+     * 对于搜索结果中的标题和内容，我们将修剪“n”和空格以显示更多信息。
+     * SQL语句
      */
     private static final String NOTES_SEARCH_PROJECTION = NoteColumns.ID + ","
         + NoteColumns.ID + " AS " + SearchManager.SUGGEST_COLUMN_INTENT_EXTRA_DATA + ","
@@ -73,25 +85,31 @@ public class NotesProvider extends ContentProvider {
         + "'" + Intent.ACTION_VIEW + "' AS " + SearchManager.SUGGEST_COLUMN_INTENT_ACTION + ","
         + "'" + Notes.TextNote.CONTENT_TYPE + "' AS " + SearchManager.SUGGEST_COLUMN_INTENT_DATA;
 
+    //便签片段查询请求SQL语句
     private static String NOTES_SNIPPET_SEARCH_QUERY = "SELECT " + NOTES_SEARCH_PROJECTION
         + " FROM " + TABLE.NOTE
         + " WHERE " + NoteColumns.SNIPPET + " LIKE ?"
         + " AND " + NoteColumns.PARENT_ID + "<>" + Notes.ID_TRASH_FOLER
         + " AND " + NoteColumns.TYPE + "=" + Notes.TYPE_NOTE;
 
+    //对之前定义的数据库帮助库进行实例化
     @Override
     public boolean onCreate() {
         mHelper = NotesDatabaseHelper.getInstance(getContext());
         return true;
     }
 
+    //根据Uri从数据库中进行查询
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
             String sortOrder) {
         Cursor c = null;
+
+        //Readable，实现可读
         SQLiteDatabase db = mHelper.getReadableDatabase();
+
         String id = null;
-        switch (mMatcher.match(uri)) {
+        switch (mMatcher.match(uri)) {  //根据Uri进行分类查找
             case URI_NOTE:
                 c = db.query(TABLE.NOTE, projection, selection, selectionArgs, null, null,
                         sortOrder);
@@ -110,9 +128,10 @@ public class NotesProvider extends ContentProvider {
                 c = db.query(TABLE.DATA, projection, DataColumns.ID + "=" + id
                         + parseSelection(selection), selectionArgs, null, null, sortOrder);
                 break;
-            case URI_SEARCH:
-            case URI_SEARCH_SUGGEST:
+            case URI_SEARCH:    //?
+            case URI_SEARCH_SUGGEST:    //查找建议？
                 if (sortOrder != null || projection != null) {
+                    //不合法的参数
                     throw new IllegalArgumentException(
                             "do not specify sortOrder, selection, selectionArgs, or projection" + "with this query");
                 }
@@ -120,6 +139,9 @@ public class NotesProvider extends ContentProvider {
                 String searchString = null;
                 if (mMatcher.match(uri) == URI_SEARCH_SUGGEST) {
                     if (uri.getPathSegments().size() > 1) {
+                        // getPathSegments()方法得到一个String的List，
+                    	// 在uri.getPathSegments().get(1)为第2个元素
+                        // 不是很懂
                         searchString = uri.getPathSegments().get(1);
                     }
                 } else {
@@ -147,26 +169,30 @@ public class NotesProvider extends ContentProvider {
         return c;
     }
 
+    //插入一个Uri
     @Override
     public Uri insert(Uri uri, ContentValues values) {
+        //获得可写的权限
         SQLiteDatabase db = mHelper.getWritableDatabase();
         long dataId = 0, noteId = 0, insertedId = 0;
         switch (mMatcher.match(uri)) {
-            case URI_NOTE:
+            //对uri分别进行判断
+            case URI_NOTE:  //写便签
                 insertedId = noteId = db.insert(TABLE.NOTE, null, values);
                 break;
-            case URI_DATA:
+            case URI_DATA:  //写数据
                 if (values.containsKey(DataColumns.NOTE_ID)) {
                     noteId = values.getAsLong(DataColumns.NOTE_ID);
-                } else {
+                } else {    //没有便签ID
                     Log.d(TAG, "Wrong data format without note id:" + values.toString());
                 }
                 insertedId = dataId = db.insert(TABLE.DATA, null, values);
                 break;
-            default:
+            default:    //异常
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
         // Notify the note uri
+        // 对内容进行更新？
         if (noteId > 0) {
             getContext().getContentResolver().notifyChange(
                     ContentUris.withAppendedId(Notes.CONTENT_NOTE_URI, noteId), null);
@@ -181,27 +207,33 @@ public class NotesProvider extends ContentProvider {
         return ContentUris.withAppendedId(uri, insertedId);
     }
 
+
+    //删除Uri
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         int count = 0;
         String id = null;
+
+        //可写权限
         SQLiteDatabase db = mHelper.getWritableDatabase();
         boolean deleteData = false;
-        switch (mMatcher.match(uri)) {
+        switch (mMatcher.match(uri)) {  //进行匹配
             case URI_NOTE:
                 selection = "(" + selection + ") AND " + NoteColumns.ID + ">0 ";
-                count = db.delete(TABLE.NOTE, selection, selectionArgs);
+                count = db.delete(TABLE.NOTE, selection, selectionArgs);//删除
                 break;
             case URI_NOTE_ITEM:
                 id = uri.getPathSegments().get(1);
                 /**
                  * ID that smaller than 0 is system folder which is not allowed to
-                 * trash
+                 * trash ID小于0的是系统文件夹，无法删除
                  */
                 long noteId = Long.valueOf(id);
-                if (noteId <= 0) {
+                if (noteId <= 0) {      //小于0，无法删除
                     break;
                 }
+
+                //删除
                 count = db.delete(TABLE.NOTE,
                         NoteColumns.ID + "=" + id + parseSelection(selection), selectionArgs);
                 break;
@@ -215,36 +247,38 @@ public class NotesProvider extends ContentProvider {
                         DataColumns.ID + "=" + id + parseSelection(selection), selectionArgs);
                 deleteData = true;
                 break;
-            default:
+            default:        //异常
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
-        if (count > 0) {
+        if (count > 0) {        //成功删除
             if (deleteData) {
                 getContext().getContentResolver().notifyChange(Notes.CONTENT_NOTE_URI, null);
             }
-            getContext().getContentResolver().notifyChange(uri, null);
+            getContext().getContentResolver().notifyChange(uri, null);  //通知更改
         }
         return count;
     }
 
+    //更新Uri
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         int count = 0;
         String id = null;
+        //可写
         SQLiteDatabase db = mHelper.getWritableDatabase();
         boolean updateData = false;
-        switch (mMatcher.match(uri)) {
+        switch (mMatcher.match(uri)) { //匹配
             case URI_NOTE:
-                increaseNoteVersion(-1, selection, selectionArgs);
+                increaseNoteVersion(-1, selection, selectionArgs);  //增加便签版本
                 count = db.update(TABLE.NOTE, values, selection, selectionArgs);
                 break;
             case URI_NOTE_ITEM:
-                id = uri.getPathSegments().get(1);
+                id = uri.getPathSegments().get(1);  //获得片段
                 increaseNoteVersion(Long.valueOf(id), selection, selectionArgs);
                 count = db.update(TABLE.NOTE, values, NoteColumns.ID + "=" + id
-                        + parseSelection(selection), selectionArgs);
+                        + parseSelection(selection), selectionArgs);    //更新
                 break;
-            case URI_DATA:
+            case URI_DATA: 
                 count = db.update(TABLE.DATA, values, selection, selectionArgs);
                 updateData = true;
                 break;
@@ -259,20 +293,24 @@ public class NotesProvider extends ContentProvider {
         }
 
         if (count > 0) {
-            if (updateData) {
+            if (updateData) {   //通知更新
                 getContext().getContentResolver().notifyChange(Notes.CONTENT_NOTE_URI, null);
             }
             getContext().getContentResolver().notifyChange(uri, null);
         }
-        return count;
+        return count;   //返回更新数量
     }
 
+    //将输入的字符串进行解析（加上AND和括号，以后应该会用
     private String parseSelection(String selection) {
         return (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : "");
     }
 
+    //增加便签的版本
     private void increaseNoteVersion(long id, String selection, String[] selectionArgs) {
         StringBuilder sql = new StringBuilder(120);
+
+        //通过sql语句对数据库储存的版本信息进行更新
         sql.append("UPDATE ");
         sql.append(TABLE.NOTE);
         sql.append(" SET ");
@@ -285,8 +323,8 @@ public class NotesProvider extends ContentProvider {
         if (id > 0) {
             sql.append(NoteColumns.ID + "=" + String.valueOf(id));
         }
-        if (!TextUtils.isEmpty(selection)) {
-            String selectString = id > 0 ? parseSelection(selection) : selection;
+        if (!TextUtils.isEmpty(selection)) {    //不为空
+            String selectString = id > 0 ? parseSelection(selection) : selection;   //selection可能需要解析
             for (String args : selectionArgs) {
                 selectString = selectString.replaceFirst("\\?", args);
             }
@@ -296,6 +334,7 @@ public class NotesProvider extends ContentProvider {
         mHelper.getWritableDatabase().execSQL(sql.toString());
     }
 
+    //还没写完的？
     @Override
     public String getType(Uri uri) {
         // TODO Auto-generated method stub
