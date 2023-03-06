@@ -14,6 +14,24 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<!--
+    AndroidManifest.xml文件是整个应用程序的信息描述文件，定义了应用程序中包含的Activity,Service,Content provider和BroadcastReceiver组件信息。
+    每个应用程序在根目录下必须包含一个AndroidManifest.xml文件，且文件名不能修改。
+    它描述了package中暴露的组件，他们各自的实现类，各种能被处理的数据和启动位置。
+-->
+<!--
+    xmlns:android定义android命名空间,一般为http://schemas.android.com/apk/res/android，
+    这样使得Android中各种标准属性能在文件中使用，提供了大部分元素中的数据。
+
+    package
+    指定本应用内java主程序包的包名，它也是一个应用进程的默认名称
+
+    versionCode
+    是给设备程序识别版本(升级)用的必须是一个interger值代表app更新过多少次，比如第一版一般为1，之后若要更新版本就设置为2，3等等。。。
+
+    versionName
+    这个名称是给用户看的，你可以将你的APP版本号设置为1.1版，后续更新版本设置为1.2、2.0版本等等。。。
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.micode.notes"
     android:versionCode="1"
