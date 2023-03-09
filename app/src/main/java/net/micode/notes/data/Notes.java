@@ -18,6 +18,7 @@ package net.micode.notes.data;
 
 import android.net.Uri;
 public class Notes {    //定义各种常量标志，多为int和string
+    //主机名（或叫Authority）用于唯一标识这个ContentProvider，外部调用者可以根据这个标识来找到它。
     public static final String AUTHORITY = "micode_notes";
     public static final String TAG = "Notes";       //tag，说明是Notes模块
 
