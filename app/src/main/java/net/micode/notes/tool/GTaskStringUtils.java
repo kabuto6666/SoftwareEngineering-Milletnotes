@@ -15,7 +15,11 @@
  */
 
 package net.micode.notes.tool;
+//定义了很多的静态字符串，目的就是为了提供jsonObject中相应字符串的"key"。
 
+/**
+ * 这个类就是定义了一堆static string，实际就是为jsonObject提供Key
+ */
 public class GTaskStringUtils {
 
     public final static String GTASK_JSON_ACTION_ID = "action_id";
