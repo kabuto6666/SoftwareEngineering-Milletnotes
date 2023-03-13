@@ -32,7 +32,7 @@ public class Notes {    //定义各种常量标志，多为int和string
      * {@link Notes#ID_TEMPARAY_FOLDER } is for notes belonging no folder
      * {@link Notes#ID_CALL_RECORD_FOLDER} is to store call records
      */
-    //对ID进行分类，分别代表不同的功能
+    //对ID进行分类，分别代表不同的文件夹
     public static final int ID_ROOT_FOLDER = 0;
     public static final int ID_TEMPARAY_FOLDER = -1;
     public static final int ID_CALL_RECORD_FOLDER = -2;
