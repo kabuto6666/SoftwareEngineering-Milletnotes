@@ -52,6 +52,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
+        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@drawable/icon_app"
         android:label="@string/app_name"
@@ -62,7 +63,7 @@
             android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTop"
-            android:theme="@style/NoteTheme"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             android:uiOptions="splitActionBarWhenNarrow"
             android:windowSoftInputMode="adjustPan" >
             <intent-filter>
@@ -76,7 +77,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:launchMode="singleTop"
-            android:theme="@style/NoteTheme" >
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
             <intent-filter android:scheme="http" >
                 <action android:name="android.intent.action.VIEW" />
 

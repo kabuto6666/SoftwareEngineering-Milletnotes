@@ -31,6 +31,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -78,7 +79,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 
-public class NotesListActivity extends Activity implements OnClickListener, OnItemLongClickListener {
+public class NotesListActivity extends AppCompatActivity implements OnClickListener, OnItemLongClickListener {
     private static final int FOLDER_NOTE_LIST_QUERY_TOKEN = 0;
 
     private static final int FOLDER_LIST_QUERY_TOKEN      = 1;
