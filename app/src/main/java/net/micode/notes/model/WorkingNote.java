@@ -40,7 +40,7 @@ public class WorkingNote {
     // Note Id
     private long mNoteId;
     // Note content
-    private String mContent;
+    public String mContent;
     // Note mode
     private int mMode;
 

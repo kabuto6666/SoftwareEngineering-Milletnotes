@@ -686,6 +686,7 @@ int id action_text 0x7f080019
 int id actions 0x7f08001a
 int id activity_chooser_view_content 0x7f08001b
 int id add 0x7f08001c
+int id add_img_btn 0x7f0800c8
 int id alertTitle 0x7f08001d
 int id all 0x7f08001e
 int id always 0x7f08001f
