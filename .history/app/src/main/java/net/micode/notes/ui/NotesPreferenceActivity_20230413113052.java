@@ -49,7 +49,7 @@ import net.micode.notes.gtask.remote.GTaskSyncService;
 
 /*
  *NotesPreferenceActivity，在小米便签中主要实现的是对背景颜色和字体大小的数据储存。
- *继承了PreferenceActivity主要功能为对系统信息和配置进行自动保存的Activity
+ * 继承了PreferenceActivity主要功能为对系统信息和配置进行自动保存的Activity
  */
 public class NotesPreferenceActivity extends PreferenceActivity {
     public static final String PREFERENCE_NAME = "notes_preferences";//优先名
