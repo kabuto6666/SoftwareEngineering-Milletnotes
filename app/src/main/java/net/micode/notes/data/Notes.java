@@ -18,6 +18,7 @@ package net.micode.notes.data;
 
 import android.net.Uri;
 public class Notes {    //定义各种常量标志，多为int和string
+    //主机名（或叫Authority）用于唯一标识这个ContentProvider，外部调用者可以根据这个标识来找到它。
     public static final String AUTHORITY = "micode_notes";
     public static final String TAG = "Notes";       //tag，说明是Notes模块
 
@@ -32,7 +33,7 @@ public class Notes {    //定义各种常量标志，多为int和string
      * {@link Notes#ID_TEMPARAY_FOLDER } is for notes belonging no folder
      * {@link Notes#ID_CALL_RECORD_FOLDER} is to store call records
      */
-    //对ID进行分类，分别代表不同的功能
+    //对ID进行分类，分别代表不同的文件夹
     public static final int ID_ROOT_FOLDER = 0;
     public static final int ID_TEMPARAY_FOLDER = -1;
     public static final int ID_CALL_RECORD_FOLDER = -2;

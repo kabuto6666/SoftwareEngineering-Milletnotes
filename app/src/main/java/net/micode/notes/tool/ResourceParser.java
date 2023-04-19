@@ -22,6 +22,21 @@ import android.preference.PreferenceManager;
 import net.micode.notes.R;
 import net.micode.notes.ui.NotesPreferenceActivity;
 
+/*简介：字面意义是资源分析器，实际上就是获取资源并且在程序中使用，比如颜色图片等
+ * 实现方法：主要利用R.java这个类，其中包括
+ * R.id      组件资源引用
+ * R.drawable  图片资源 （被使用）
+ * R.layout  布局资源
+ * R.menu   菜单资源
+ * R.String  文字资源
+ * R.style    主题资源 （被使用）
+ * 在按顺序设置好相应的id后，就可以编写简单的getXXX函数获取需要的资源
+ *
+ * 特殊的变量 ：
+ * @BG_DEFAULT_COLOR 默认背景颜色（黄）
+ * BG_DEFAULT_FONT_SIZE 默认文本大小（中）
+ */
+
 public class ResourceParser {
 
     public static final int YELLOW           = 0;
@@ -65,8 +80,12 @@ public class ResourceParser {
         }
     }
 
+    /**
+     * 直接获取默认的背景颜色
+     */
     public static int getDefaultBgId(Context context) {
         if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                //PREFERENCE_SET_BG_COLOR_KEY是个final string,其属性为false,也就是说getBoolean肯定执行false
                 NotesPreferenceActivity.PREFERENCE_SET_BG_COLOR_KEY, false)) {
             return (int) (Math.random() * NoteBgResources.BG_EDIT_RESOURCES.length);
         } else {
@@ -74,6 +93,9 @@ public class ResourceParser {
         }
     }
 
+    /**
+     * note物品的背景颜色资源
+     */
     public static class NoteItemBgResources {
         private final static int [] BG_FIRST_RESOURCES = new int [] {
             R.drawable.list_yellow_up,
@@ -128,6 +150,9 @@ public class ResourceParser {
         }
     }
 
+    /**
+     * 组件背景颜色资源
+     */
     public static class WidgetBgResources {
         private final static int [] BG_2X_RESOURCES = new int [] {
             R.drawable.widget_2x_yellow,
@@ -154,6 +179,9 @@ public class ResourceParser {
         }
     }
 
+    /**
+     * 文本外观资源
+     */
     public static class TextAppearanceResources {
         private final static int [] TEXTAPPEARANCE_RESOURCES = new int [] {
             R.style.TextAppearanceNormal,
@@ -162,12 +190,13 @@ public class ResourceParser {
             R.style.TextAppearanceSuper
         };
 
+        /**
+         * HACKME: Fix bug of store the resource id in shared preference.
+         * The id may larger than the length of resources, in this case,
+         * return the {@link ResourceParser#BG_DEFAULT_FONT_SIZE}
+         */
         public static int getTexAppearanceResource(int id) {
-            /**
-             * HACKME: Fix bug of store the resource id in shared preference.
-             * The id may larger than the length of resources, in this case,
-             * return the {@link ResourceParser#BG_DEFAULT_FONT_SIZE}
-             */
+            //这里有一个容错的函数，防止输入的id大于资源总量，若如此，则自动返回默认的设置结果
             if (id >= TEXTAPPEARANCE_RESOURCES.length) {
                 return BG_DEFAULT_FONT_SIZE;
             }

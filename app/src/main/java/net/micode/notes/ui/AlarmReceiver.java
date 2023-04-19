@@ -23,7 +23,10 @@ import android.content.Intent;
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+        //启动AlarmAlertActivity
         intent.setClass(context, AlarmAlertActivity.class);
+        //activity要存在于activity的栈中，而非activity的途径启动activity时必然不存在一个activity的栈
+        //所以要新起一个栈装入启动的activity
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

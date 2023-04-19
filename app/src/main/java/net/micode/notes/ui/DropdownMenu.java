@@ -29,6 +29,8 @@ import net.micode.notes.R;
 
 public class DropdownMenu {
     private Button mButton;
+
+    //声明一个下拉菜单
     private PopupMenu mPopupMenu;
     private Menu mMenu;
 
@@ -37,6 +39,9 @@ public class DropdownMenu {
         mButton.setBackgroundResource(R.drawable.dropdown_icon);
         mPopupMenu = new PopupMenu(context, mButton);
         mMenu = mPopupMenu.getMenu();
+
+        //MenuInflater是用来实例化Menu目录下的Menu布局文件
+        //根据ID来确认menu的内容选项
         mPopupMenu.getMenuInflater().inflate(menuId, mMenu);
         mButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -45,16 +50,25 @@ public class DropdownMenu {
         });
     }
 
+    /**
+     * 设置菜单的监听
+     */
     public void setOnDropdownMenuItemClickListener(OnMenuItemClickListener listener) {
         if (mPopupMenu != null) {
             mPopupMenu.setOnMenuItemClickListener(listener);
         }
     }
 
+    /**
+     * 对于菜单选项的初始化，根据索引搜索菜单需要的选项
+     */
     public MenuItem findItem(int id) {
         return mMenu.findItem(id);
     }
 
+    /**
+     * 布局文件，设置标题
+     */
     public void setTitle(CharSequence title) {
         mButton.setText(title);
     }

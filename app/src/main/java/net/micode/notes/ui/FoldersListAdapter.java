@@ -28,12 +28,17 @@ import net.micode.notes.R;
 import net.micode.notes.data.Notes;
 import net.micode.notes.data.Notes.NoteColumns;
 
-
+/**
+ * CursorAdapter是Cursor和ListView的接口
+ * FoldersListAdapter继承了CursorAdapter的类
+ * 主要作用是便签数据库和用户的交互
+ * 这里就是用folder（文件夹）的形式展现给用户
+ */
 public class FoldersListAdapter extends CursorAdapter {
     public static final String [] PROJECTION = {
         NoteColumns.ID,
         NoteColumns.SNIPPET
-    };
+    };//调用数据库中便签的ID和片段
 
     public static final int ID_COLUMN   = 0;
     public static final int NAME_COLUMN = 1;
@@ -43,11 +48,25 @@ public class FoldersListAdapter extends CursorAdapter {
         // TODO Auto-generated constructor stub
     }
 
+    /**
+     * 创建一个文件夹，对于各文件夹中子标签的初始化
+     * @param context Interface to application's global information
+     * @param cursor The cursor from which to get the data. The cursor is already
+     * moved to the correct position.
+     * @param parent The parent to which the new view is attached to
+     */
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         return new FolderListItem(context);
     }
 
+    /**
+     * 将各个布局文件绑定起来
+     * @param view Existing view, returned earlier by newView
+     * @param context Interface to application's global information
+     * @param cursor The cursor from which to get the data. The cursor is already
+     * moved to the correct position.
+     */
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         if (view instanceof FolderListItem) {
@@ -57,12 +76,18 @@ public class FoldersListAdapter extends CursorAdapter {
         }
     }
 
+    /**
+     * 根据数据库中标签的ID得到标签的各项内容
+     */
     public String getFolderName(Context context, int position) {
         Cursor cursor = (Cursor) getItem(position);
         return (cursor.getLong(ID_COLUMN) == Notes.ID_ROOT_FOLDER) ? context
                 .getString(R.string.menu_move_parent_folder) : cursor.getString(NAME_COLUMN);
     }
 
+    /**
+     * 文件夹
+     */
     private class FolderListItem extends LinearLayout {
         private TextView mName;
 
