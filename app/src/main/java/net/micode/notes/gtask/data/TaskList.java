@@ -78,7 +78,6 @@ public class TaskList extends Node {
     }
  
     /* (non-Javadoc)
-     * @see net.micode.notes.gtask.data.Node#getUpdateAction(int)
      * 生成并返回一个包含了一定数据的JSONObject实体
      */
     public JSONObject getUpdateAction(int actionId) {
@@ -224,7 +223,6 @@ public class TaskList extends Node {
     }
  
     /**
-     * @return
      * 功能：获得TaskList的大小，即mChildren的大小
      */
     public int getChildTaskCount() {
@@ -232,8 +230,6 @@ public class TaskList extends Node {
     }
  
     /**
-     * @param task
-     * @return 返回值为是否成功添加任务。
      * 功能：在当前任务表末尾添加新的任务。
      */
     public boolean addChildTask(Task task) {
@@ -253,9 +249,6 @@ public class TaskList extends Node {
     }
  
     /**
-     * @param task
-     * @param index
-     * @return
      * 功能：在当前任务表的指定位置添加新的任务。
      */
     public boolean addChildTask(Task task, int index) {
@@ -285,8 +278,6 @@ public class TaskList extends Node {
     }
  
     /**
-     * @param task
-     * @return 返回删除是否成功
      * 功能：删除TaskList中的一个Task
      */
     public boolean removeChildTask(Task task) {
@@ -311,9 +302,6 @@ public class TaskList extends Node {
     }
  
     /**
-     * @param task
-     * @param index
-     * @return
      * 功能：将当前TaskList中含有的某个Task移到index位置
      */
     public boolean moveChildTask(Task task, int index) {
@@ -336,8 +324,6 @@ public class TaskList extends Node {
     }
  
     /**
-     * @param gid
-     * @return返回寻找结果
      * 功能：按gid寻找Task
      */
     public Task findChildTaskByGid(String gid) {
@@ -351,8 +337,6 @@ public class TaskList extends Node {
     }
  
     /**
-     * @param task
-     * @return
      * 功能：返回指定Task的index
      */
     public int getChildTaskIndex(Task task) {
@@ -360,8 +344,6 @@ public class TaskList extends Node {
     }
  
     /**
-     * @param index
-     * @return
      * 功能：返回指定index的Task
      */
     public Task getChildTaskByIndex(int index) {
@@ -373,8 +355,6 @@ public class TaskList extends Node {
     }
  
     /**
-     * @param gid
-     * @return
      * 功能：返回指定gid的Task
      */
     public Task getChilTaskByGid(String gid) {
