@@ -161,18 +161,16 @@
              mNotesListAdapter.changeCursor(null);
          } else {
              super.onActivityResult(requestCode, resultCode, data);            // 调用 Activity 的onActivityResult（）
+
          }
      }
  
      private void setAppInfoFromRawRes() {
-         // Android平台给我们提供了一个SharedPreferences类，它是一个轻量级的存储类，特别适合用于保存软件配置参数。
          SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
          if (!sp.getBoolean(PREFERENCE_ADD_INTRODUCTION, false)) {
              StringBuilder sb = new StringBuilder();
              InputStream in = null;
              try {
-                // 把资源文件放到应用程序的/raw/raw下，那么就可以在应用中使用getResources获取资源后,
-            	// 以openRawResource方法（不带后缀的资源文件名）打开这个文件。 
                   in = getResources().openRawResource(R.raw.introduction);
                  if (in != null) {
                      InputStreamReader isr = new InputStreamReader(in);
@@ -199,15 +197,12 @@
                      }
                  }
              }
-             // 创建空的WorkingNote
-
+ 
              WorkingNote note = WorkingNote.createEmptyNote(this, Notes.ID_ROOT_FOLDER,
                      AppWidgetManager.INVALID_APPWIDGET_ID, Notes.TYPE_WIDGET_INVALIDE,
                      ResourceParser.RED);
              note.setWorkingText(sb.toString());
              if (note.saveNote()) {
-                            	// 更新保存note的信息
-
                  sp.edit().putBoolean(PREFERENCE_ADD_INTRODUCTION, true).commit();
              } else {
                  Log.e(TAG, "Save introduction note error");
@@ -221,21 +216,19 @@
          super.onStart();
          startAsyncNotesListQuery();
      }
-     // 初始化资源
+ 
      private void initResources() {
-         mContentResolver = this.getContentResolver();// 获取应用程序的数据，得到类似数据表的东西
+         mContentResolver = this.getContentResolver();
          mBackgroundQueryHandler = new BackgroundQueryHandler(this.getContentResolver());
          mCurrentFolderId = Notes.ID_ROOT_FOLDER;
-
-        // findViewById 是安卓编程的定位函数，主要是引用.R文件里的引用名
-         mNotesListView = (ListView) findViewById(R.id.notes_list);// 绑定XML中的ListView，作为Item的容器
+         mNotesListView = (ListView) findViewById(R.id.notes_list);
          mNotesListView.addFooterView(LayoutInflater.from(this).inflate(R.layout.note_list_footer, null),
                  null, false);
          mNotesListView.setOnItemClickListener(new OnListItemClickListener());
          mNotesListView.setOnItemLongClickListener(this);
          mNotesListAdapter = new NotesListAdapter(this);
          mNotesListView.setAdapter(mNotesListAdapter);
-         mAddNewNote = (Button) findViewById(R.id.btn_new_note);// 在activity中要获取该按钮
+         mAddNewNote = (Button) findViewById(R.id.btn_new_note);
          mAddNewNote.setOnClickListener(this);
          mAddNewNote.setOnTouchListener(new NewNoteOnTouchListener());
          mDispatch = false;
@@ -245,7 +238,7 @@
          mState = ListEditState.NOTE_LIST;
          mModeCallBack = new ModeCallback();
      }
-     // 继承自ListView.MultiChoiceModeListener 和 OnMenuItemClickListener
+ 
      private class ModeCallback implements ListView.MultiChoiceModeListener, OnMenuItemClickListener {
          private DropdownMenu mDropDownMenu;
          private ActionMode mActionMode;
@@ -283,7 +276,7 @@
              });
              return true;
          }
-         // 更新菜单
+ 
          private void updateMenu() {
              int selectedCount = mNotesListAdapter.getSelectedCount();
              // Update dropdown menu
@@ -379,10 +372,14 @@
                          start -= mTitleBar.getHeight();
                      }
                      /**
-                    *当点击“New Note”按钮的透明部分时，发送将事件添加到此按钮后面的列表视图。透明部分
-                    *“新建注释”按钮可以用公式y=-0.12x+94表示按钮顶部的行。基于“新建”左侧的坐标*“注意”按钮。94表示透明部分的最大高度。
-                    *请注意，如果按钮的背景发生变化，则公式应也会发生变化。这是非常糟糕的，只是为了UI设计者的强烈要求。*/
-
+                      * HACKME:When click the transparent part of "New Note" button, dispatch
+                      * the event to the list view behind this button. The transparent part of
+                      * "New Note" button could be expressed by formula y=-0.12x+94（Unit:pixel）
+                      * and the line top of the button. The coordinate based on left of the "New
+                      * Note" button. The 94 represents maximum height of the transparent part.
+                      * Notice that, if the background of the button changes, the formula should
+                      * also change. This is very bad, just for the UI designer's strong requirement.
+                      */
                      if (event.getY() < (event.getX() * (-0.12) + 94)) {
                          View view = mNotesListView.getChildAt(mNotesListView.getChildCount() - 1
                                  - mNotesListView.getFooterViewsCount());
@@ -485,14 +482,15 @@
              protected HashSet<AppWidgetAttribute> doInBackground(Void... unused) {
                  HashSet<AppWidgetAttribute> widgets = mNotesListAdapter.getSelectedWidget();
                  if (!isSyncMode()) {
-                     //如果未同步，直接删除笔记
+                     // if not synced, delete notes directly
                      if (DataUtils.batchDeleteNotes(mContentResolver, mNotesListAdapter
                              .getSelectedItemIds())) {
                      } else {
                          Log.e(TAG, "Delete notes error, should not happens");
                      }
                  } else {
-                      //在同步模式下，我们将把删除的笔记移到垃圾桶中文件夹
+                     // in sync mode, we'll move the deleted note into the trash
+                     // folder
                      if (!DataUtils.batchMoveToFolder(mContentResolver, mNotesListAdapter
                              .getSelectedItemIds(), Notes.ID_TRASH_FOLER)) {
                          Log.e(TAG, "Move notes to trash folder error, should not happens");
@@ -527,10 +525,10 @@
          HashSet<AppWidgetAttribute> widgets = DataUtils.getFolderNoteWidget(mContentResolver,
                  folderId);
          if (!isSyncMode()) {
-             //如果未同步，则直接删除文件夹
+             // if not synced, delete folder directly
              DataUtils.batchDeleteNotes(mContentResolver, ids);
          } else {
-              //在同步模式下，我们将把删除的文件夹移到垃圾文件夹中
+             // in sync mode, we'll move the deleted folder into the trash folder
              DataUtils.batchMoveToFolder(mContentResolver, ids, Notes.ID_TRASH_FOLER);
          }
          if (widgets != null) {
@@ -650,7 +648,9 @@
          if (TextUtils.isEmpty(etName.getText())) {
              positive.setEnabled(false);
          }
-         //当名称编辑文本为空时，禁用肯定按钮
+         /**
+          * When the name edit text is null, disable the positive button
+          */
          etName.addTextChangedListener(new TextWatcher() {
              public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                  // TODO Auto-generated method stub
@@ -673,7 +673,7 @@
      }
  
      @Override
-     public void onBackPressed() {//按返回键时根据情况更改类中的数据
+     public void onBackPressed() {
          switch (mState) {
              case SUB_FOLDER:
                  mCurrentFolderId = Notes.ID_ROOT_FOLDER;
@@ -696,7 +696,7 @@
          }
      }
  
-     private void updateWidget(int appWidgetId, int appWidgetType) {//根据不同类型的widget更新插件，通过intent传送数据
+     private void updateWidget(int appWidgetId, int appWidgetType) {
          Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
          if (appWidgetType == Notes.TYPE_WIDGET_2X) {
              intent.setClass(this, NoteWidgetProvider_2x.class);
@@ -714,7 +714,7 @@
          sendBroadcast(intent);
          setResult(RESULT_OK, intent);
      }
- // 声明监听器，建立菜单，包括名称，视图，删除操作，更改名称操作；
+ 
      private final OnCreateContextMenuListener mFolderOnCreateContextMenuListener = new OnCreateContextMenuListener() {
          public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
              if (mFocusNoteDataItem != null) {
@@ -726,7 +726,7 @@
          }
      };
  
-     @Override//针对menu中不同的选择进行不同的处理，里面详细注释
+     @Override
      public void onContextMenuClosed(Menu menu) {
          if (mNotesListView != null) {
              mNotesListView.setOnCreateContextMenuListener(null);
@@ -742,10 +742,10 @@
          }
          switch (item.getItemId()) {
              case MENU_FOLDER_VIEW:
-                 openFolder(mFocusNoteDataItem);//打开对应文件
+                 openFolder(mFocusNoteDataItem);
                  break;
              case MENU_FOLDER_DELETE:
-                 AlertDialog.Builder builder = new AlertDialog.Builder(this);//设置确认是否删除的对话框
+                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                  builder.setTitle(getString(R.string.alert_title_delete));
                  builder.setIcon(android.R.drawable.ic_dialog_alert);
                  builder.setMessage(getString(R.string.alert_message_delete_folder));
@@ -756,7 +756,7 @@
                              }
                          });
                  builder.setNegativeButton(android.R.string.cancel, null);
-                 builder.show();//显示对话框
+                 builder.show();
                  break;
              case MENU_FOLDER_CHANGE_NAME:
                  showCreateOrModifyFolderDialog(false);
@@ -827,12 +827,12 @@
      }
  
      @Override
-     public boolean onSearchRequested() {//直接调用startSearch函数
+     public boolean onSearchRequested() {
          startSearch(null, false, null /* appData */, false);
          return true;
      }
  
-     private void exportNoteToText() {// 实现将便签导出到文本功能
+     private void exportNoteToText() {
          final BackupUtils backup = BackupUtils.getInstance(NotesListActivity.this);
          new AsyncTask<Void, Void, Integer>() {
  
@@ -874,17 +874,17 @@
          }.execute();
      }
  
-     private boolean isSyncMode() {//判断是否正在同步
+     private boolean isSyncMode() {
          return NotesPreferenceActivity.getSyncAccountName(this).trim().length() > 0;
      }
  
-     private void startPreferenceActivity() {//跳转到PreferenceActivity界面
+     private void startPreferenceActivity() {
          Activity from = getParent() != null ? getParent() : this;
          Intent intent = new Intent(from, NotesPreferenceActivity.class);
          from.startActivityIfNeeded(intent, -1);
      }
  
-     private class OnListItemClickListener implements OnItemClickListener {//实现对便签列表项的点击事件（短按）
+     private class OnListItemClickListener implements OnItemClickListener {
  
          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
              if (view instanceof NotesListItem) {
@@ -925,7 +925,7 @@
  
      }
  
-     private void startQueryDestinationFolders() {//查询目标文件
+     private void startQueryDestinationFolders() {
          String selection = NoteColumns.TYPE + "=? AND " + NoteColumns.PARENT_ID + "<>? AND " + NoteColumns.ID + "<>?";
          selection = (mState == ListEditState.NOTE_LIST) ? selection:
              "(" + selection + ") OR (" + NoteColumns.ID + "=" + Notes.ID_ROOT_FOLDER + ")";
@@ -942,11 +942,7 @@
                  },
                  NoteColumns.MODIFIED_DATE + " DESC");
      }
- /* 
-     * 长按某一项时进行的操作
-     * 如果长按的是便签，则通过ActionMode菜单实现；如果长按的是文件夹，则通过ContextMenu菜单实现；
-     * 具体ActionMOde菜单和ContextMenu菜单的详细见精度笔记
-     */
+ 
      public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
          if (view instanceof NotesListItem) {
              mFocusNoteDataItem = ((NotesListItem) view).getItemData();
@@ -964,3 +960,250 @@
          return false;
      }
  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+
+package net.micode.notes.ui;
+ 
+import android.content.Context;
+import android.database.Cursor;
+import android.util.Log;
+import android.view.View; 
+import android.view.ViewGroup;
+import android.widget.CursorAdapter;
+ 
+ 
+import net.micode.notes.data.Notes;
+ 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+ 
+ 
+// 便签表连接器，继承CursorAdapter，为cursor和ListView提供了连接的桥梁，实现了光标和编辑便签链接
+public class NotesListAdapter extends CursorAdapter {
+    private static final String TAG = "NotesListAdapter";
+    private Context mContext;
+    private HashMap<Integer, Boolean> mSelectedIndex;
+    private int mNotesCount;    //便签数
+    private boolean mChoiceMode;   //选择模式标记
+ 
+    //桌面widget的属性，包括编号和类型
+    public static class AppWidgetAttribute {
+        public int widgetId;
+        public int widgetType;
+    };
+
+     //初始化便签链接器
+     //根据传进来的内容设置相关变量
+    public NotesListAdapter(Context context) {
+        super(context, null);  //父类对象置空
+        mSelectedIndex = new HashMap<Integer, Boolean>();  //新建选项下标的hash表
+        mContext = context;
+        mNotesCount = 0;
+    }
+ 
+     //新建一个视图来存储光标所指向的数据
+     //使用兄弟类NotesListItem新建一个项目选项
+    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+        return new NotesListItem(context);
+    }
+ 
+   
+    //将已经存在的视图和鼠标指向的数据进行捆绑
+    public void bindView(View view, Context context, Cursor cursor) {
+        if (view instanceof NotesListItem) {
+        	//若view是NotesListItem的一个实例
+            NoteItemData itemData = new NoteItemData(context, cursor);
+            ((NotesListItem) view).bind(context, itemData, mChoiceMode,
+                    isSelectedItem(cursor.getPosition()));
+           //则新建一个项目选项并且用bind跟将view和鼠标，内容，便签数据捆绑在一起
+        }
+    }
+ 
+    //设置勾选框
+    public void setCheckedItem(final int position, final boolean checked) {
+        mSelectedIndex.put(position, checked);
+        //根据定位和是否勾选设置下标
+        notifyDataSetChanged();
+        //在修改后刷新activity
+    }
+ 
+    //判断单选按钮是否勾选
+    public boolean isInChoiceMode() {
+        return mChoiceMode;
+    }
+ 
+    //设置单项选项框
+    public void setChoiceMode(boolean mode) {
+        mSelectedIndex.clear();//重置下标并且根据参数mode设置选项
+        mChoiceMode = mode;
+    }
+ 
+    //全选
+    public void selectAll(boolean checked) {
+        Cursor cursor = getCursor();
+        //获取光标位置
+        for (int i = 0; i < getCount(); i++) {
+            if (cursor.moveToPosition(i)) {
+                if (NoteItemData.getNoteType(cursor) == Notes.TYPE_NOTE) {
+                    setCheckedItem(i, checked);
+                }
+            }
+        }
+        //遍历所有光标可用的位置在判断为便签类型之后勾选单项框
+    }
+ 
+    //建立选择项的下标列表
+    public HashSet<Long> getSelectedItemIds() {
+        HashSet<Long> itemSet = new HashSet<Long>();
+        //建立hash表
+        for (Integer position : mSelectedIndex.keySet()) {
+        	//遍历所有的关键
+            if (mSelectedIndex.get(position) == true) {
+            	//若光标位置可用
+                Long id = getItemId(position);
+                if (id == Notes.ID_ROOT_FOLDER) {
+                	//原文件不需要添加
+                    Log.d(TAG, "Wrong item id, should not happen");
+                } else {
+                    itemSet.add(id);
+                }
+                //则将id该下标假如选项集合中
+                
+            }
+        }
+ 
+        return itemSet;
+    }
+ 
+    //建立桌面Widget的选项表
+    public HashSet<AppWidgetAttribute> getSelectedWidget() {
+        HashSet<AppWidgetAttribute> itemSet = new HashSet<AppWidgetAttribute>();
+        for (Integer position : mSelectedIndex.keySet()) {
+            if (mSelectedIndex.get(position) == true) {
+                Cursor c = (Cursor) getItem(position);
+                //和getSelectedItemIds一样
+                if (c != null) {
+                	//光标位置可用的话就建立新的Widget属性并编辑下标和类型，最后添加到选项集中
+                    AppWidgetAttribute widget = new AppWidgetAttribute();
+                    NoteItemData item = new NoteItemData(mContext, c);
+                    widget.widgetId = item.getWidgetId();
+                    widget.widgetType = item.getWidgetType();
+                    itemSet.add(widget);
+                } else {
+                    Log.e(TAG, "Invalid cursor");
+                    return null;
+                }
+            }
+        }
+        return itemSet;
+    }
+ 
+    //获取选项个数
+    public int getSelectedCount() {
+        Collection<Boolean> values = mSelectedIndex.values();
+        //首先获取选项下标的值
+        if (null == values) {
+            return 0;
+        }
+        Iterator<Boolean> iter = values.iterator();
+        //初始化叠加器
+        int count = 0;
+        while (iter.hasNext()) {
+            if (true == iter.next()) {
+            	//若value值为真计数+1
+                count++;
+            }
+        }
+        return count;
+    }
+ 
+    //判断是否全选
+    public boolean isAllSelected() {
+        int checkedCount = getSelectedCount();
+        return (checkedCount != 0 && checkedCount == mNotesCount);
+        //获取选项数看是否等于便签的个数
+    }
+ 
+    //判断是否为选项表
+    public boolean isSelectedItem(final int position) {//通过传递的下标来确定
+        if (null == mSelectedIndex.get(position)) {
+            return false;
+        }
+        return mSelectedIndex.get(position);
+    }
+ 
+    protected void onContentChanged() {//在activity内容发生局部变动的时候回调该函数计算便签的数量
+        super.onContentChanged();
+        //执行基类函数
+        calcNotesCount();
+    }
+ 
+    public void changeCursor(Cursor cursor) {//在activity光标发生局部变动的时候回调该函数计算便签的数量
+        super.changeCursor(cursor);
+        calcNotesCount();
+    }
+ 
+    private void calcNotesCount() {//计算便签数量
+        mNotesCount = 0;
+        for (int i = 0; i < getCount(); i++) {
+        	//获取总数同时遍历
+            Cursor c = (Cursor) getItem(i);
+            if (c != null) {
+                if (NoteItemData.getNoteType(c) == Notes.TYPE_NOTE) {
+                    mNotesCount++;
+                   //若该位置不为空并且文本类型为便签就+1
+                }
+            } else {
+                Log.e(TAG, "Invalid cursor");
+                return;
+            }
+            //否则报错
+        }
+    } 
+}*/
