@@ -39,6 +39,12 @@ import org.json.JSONObject;
  * SqlData其实就是也就是所谓数据中的数据
  */
  
+ /*
+  * 功能描述：
+  * 实现过程：
+  * 参数注解： 
+  */
+  
  public class SqlData {
      /*
       * 功能描述：得到类的简写名称存入字符串TAG中
